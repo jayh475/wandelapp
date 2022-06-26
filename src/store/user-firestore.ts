@@ -40,7 +40,6 @@ export async function createUser(name: string, email: string, uid: string) {
     console.error("Error writing new message to Firebase Database", error);
   }
 }
-
 export async function createWalk(
   organisator: string,
   title: string,
@@ -82,15 +81,11 @@ async function joinedWalkArray(uid: string) {
     return [];
   }
 }
-
-// TODO set joined walks inside of this
 // getMywalks(feature ones)
 export async function getWalks(uid: string) {
   const map = new Map();
   try {
-    // list with doc ids from walks that are joined
     let joinedWalkIds = await joinedWalkArray(uid);
-
     const colRef = collection(db, "walks");
     const q = query(colRef, where("date", ">=", getUnixOfToday()));
     const querySnapshot = await getDocs(q);
@@ -100,13 +95,10 @@ export async function getWalks(uid: string) {
       }
     });
     return map;
-
-    // return list;
   } catch (error) {
     console.error("Error getting objects from Firebase Database", error);
   }
 }
-
 // profile view
 export async function getAProfileHistoryWalks(uid: any) {
   let list: Array<any> = [];
@@ -117,8 +109,6 @@ export async function getAProfileHistoryWalks(uid: any) {
       where("uid", "==", uid),
       where("date", "<", getUnixOfToday())
     );
-    // console.log(getUnixOfToday());
-
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       list.push(doc.data());
@@ -129,7 +119,6 @@ export async function getAProfileHistoryWalks(uid: any) {
     console.error("Error getting objects from Firebase Database", error);
   }
 }
-// https://firebase.google.com/docs/firestore/query-data/get-data
 export async function getMyUpcomingDates(uid: string) {
   const map = new Map();
   try {
@@ -150,9 +139,7 @@ export async function getMyUpcomingDates(uid: string) {
 
 // everyones public walks
 export async function getAllUpComingWalks() {
-  // let list: Array<any> = [];
   const map = new Map();
-
   try {
     const colref = collection(db, "walks");
     const q = query(colref, where("date", ">=", getUnixOfToday()));
@@ -160,15 +147,11 @@ export async function getAllUpComingWalks() {
     querySnapshot.forEach((doc) => {
       map.set(doc.id, doc.data());
     });
-    // map.forEach((value, key) => {
-    //   console.log(key + " = " + value);
-    // });
     return map;
   } catch (error) {
     console.error("Error getting objects from Firebase database", error);
   }
 }
-
 export async function getMyWalk(docID: any) {
   const docRef = doc(db, "walks", docID);
 
@@ -182,7 +165,6 @@ export async function getProfileDetails(uid: any) {
   const querySnapshot = await getDoc(docRef);
   return querySnapshot.data();
 }
-
 export async function participateInWalk(uid: string, name: string, docId: any) {
   try {
     const docRef = doc(db, "walks", docId);
@@ -196,7 +178,6 @@ export async function participateInWalk(uid: string, name: string, docId: any) {
     console.error("Error sending objects to Firebase database", error);
   }
 }
-
 export async function acceptParticipant(theirUid: string, docId: any) {
   const docRef = doc(db, "walks", docId);
   const colRef = collection(docRef, "participants");
@@ -221,7 +202,6 @@ export async function acceptParticipant(theirUid: string, docId: any) {
     });
   }
 }
-
 export async function getPendingParticipants(docId: any) {
   let list: Array<any> = [];
   const docRef = doc(db, "walks", docId);
@@ -234,9 +214,6 @@ export async function getPendingParticipants(docId: any) {
   });
   return list;
 }
-
-// export async function
-
 export async function getAcceptedParticipants(docId: any) {
   let list: Array<any> = [];
   const docRef = doc(db, "walks", docId);
@@ -250,7 +227,6 @@ export async function getAcceptedParticipants(docId: any) {
   return list;
 }
 
-// TODO finished walk
 export async function saveFinishedWalk(
   coordinates: object,
   startTime: string,
@@ -273,7 +249,6 @@ export async function saveFinishedWalk(
     endTime: endTimeConvert,
   });
 }
-//TODO too see after finished
 export async function getFinishedWalk(docIdWalk: any) {
   const docRef = doc(db, "walks", docIdWalk);
   const colRef = collection(docRef, "finishedWalk");
@@ -283,37 +258,11 @@ export async function getFinishedWalk(docIdWalk: any) {
 
   return querysnapshot.data();
 }
-
-// TODO needs to be done
-export async function denieParticipant() {}
-
-// export async function addFriend(
-//   uid: string,
-//   newFriendUid: string,
-//   name: string
-// ) {
-//   const docRef = doc(db, "users", uid);
-//   const colRef = collection(docRef, "friends");
-//   setDoc(doc(colRef, newFriendUid), {
-//     uid: newFriendUid,
-//     name: name,
-//   });
-// }
-
-//TODO needs to be done
-// https://cloud.google.com/firestore/docs/samples/firestore-data-delete-collection
 export async function deleteWalk(WalkId: any) {
   try {
-    // finishedWalk -> route
-    // participants = check  if docId(uid)
-    // joinedWalks col(in users) -> joinedWalksDoc
-
     const docRef = doc(db, "walks", WalkId);
-
     await deleteDoc(docRef);
   } catch (error) {
     console.error("Error deleting data did not work ", error);
   }
 }
-
-export async function addPhoneNumberToUser(phoneNumber: String) {}
