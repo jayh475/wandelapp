@@ -29,9 +29,9 @@ export default {
     console.log();
     return user.name;
   },
-  async isLoggedIn() {
+   isLoggedIn() {
     let users: any = db.users;
-    return await Dexie.exists("deWandelendeTakken").
+    return Dexie.exists("deWandelendeTakken").
     then(function(exists) {
       if (exists) {
         let data = users.get("475");

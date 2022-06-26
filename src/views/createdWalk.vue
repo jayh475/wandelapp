@@ -5,15 +5,12 @@
     color="white"
   ></dynamic-header>
 
-  <!--TODO make this a component file to also use in search walks -->
-
   <h1>{{ myWalk.title }}</h1>
 
   <div class="item-box-1">
     <div>
       <p>
-        <strong>Organisator: </strong>
-        <button
+        <strong>Organisator: </strong><button
           @click="goToAProfile(myWalk.organisator, myWalk.uid)"
           class="profile-organisator"
         >
@@ -39,8 +36,6 @@
         style="background-color: #2a2e43; color: white"
         >Participate</n-button
       >
-
-      <n-button style="background-color: #2a2e43; color: white">Back</n-button>
     </div>
   </div>
 
@@ -94,7 +89,7 @@
     "
     >See walked route</n-button
   >
-  
+
 </template>
 
 <script lang="ts">
@@ -103,7 +98,7 @@ import {
   CheckBoxSharp as CheckIcon,
 } from "@vicons/material";
 import DynamicHeader from "../components/DynamicHeader.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted,unref } from "vue";
 import {
   getMyWalk,
   participateInWalk,
@@ -117,6 +112,9 @@ import { NButton, useMessage } from "naive-ui";
 import { unixToTime, unixToDate } from "../controllers/createWalkControlle";
 import { goToAProfile } from "../router/goToRouteWithParam";
 import router from "../router";
+import {checkIfListsNotEmpty} from "../controllers/participationController"
+
+
 
 export default {
   components: {
@@ -131,8 +129,7 @@ export default {
     const userStore = useUserStore();
     const myUid = userStore.getUID;
     const myName = userStore.getUsername;
-
-    // let myWalk = ref<any | null>(null);
+ 
     const myWalk = ref({
       title: null,
       organisator: null,
@@ -148,7 +145,6 @@ export default {
 
     const requests = ref([]);
     let acceptedParticipants = ref([]);
-
     const route = useRoute();
 
     onMounted(async () => {
@@ -158,7 +154,6 @@ export default {
       const participants = await getAcceptedParticipants(
         route.params.wandelingID
       );
-
       myWalk.value.title = walk.data.title;
       myWalk.value.organisator = walk.data.organisator;
       myWalk.value.location = walk.data.location;
@@ -169,7 +164,6 @@ export default {
       myWalk.value.uid = walk.data.uid;
       myWalk.value.docId = walk.docId;
       myWalk.value.created = unixToDate(walk.data.created);
-
       requests.value = request;
       acceptedParticipants.value = participants;
     });
@@ -186,35 +180,23 @@ export default {
       const wandelingID = route.params.wandelingID;
       router.push({ name: "walking", params: { wandelingID: wandelingID } });
     };
-    // moet verhuisd worden naar een controller
+
     const checkAndthenParticipateInWalk = (
       myUid: string,
       myName: string,
       docId: any
-    ) => {
-      let list: Array<string> = [];
-
-      if (requests.value.length !== 0) {
-        requests.value.forEach((value) => {
-          list.push(value.uid);
-          console.log(list);
-        });
-      }
-      if (acceptedParticipants.value.length !== 0) {
-        acceptedParticipants.value.forEach((value) => {
-          console.log("je moedder");
-          console.log(value.uid);
-          list.push(value.uid);
-        });
-      }
-      if (!list.some((item) => item === myUid)) {
-        participateInWalk(myUid, myName, docId);
+    ) => {      
+      let iAmAParticipant = (Array.from(unref(acceptedParticipants), x => x.uid === myUid))
+      let iSendedARequest = (Array.from(unref(requests), x => x.uid === myUid ));
+      if( iSendedARequest || iAmAParticipant){
+              message.error("still waiting for organisator to respond");
+      }else{
+          participateInWalk(myUid, myName, docId);
         message.success("succesfully committed application");
-      } else {
-        message.error("still waiting for organisator to respond");
+    
       }
+     
     };
-
     return {
       myWalk,
       myUid,
@@ -227,6 +209,7 @@ export default {
       acceptParticipant,
       acceptedParticipants,
       checkAndthenParticipateInWalk,
+      
     };
   },
 };
