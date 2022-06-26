@@ -35,7 +35,7 @@
         <a href="#">
           <span class="icon" style="--clr: #2196f3">
             <n-icon size="35">
-              <search />
+              <search/>
             </n-icon>
           </span>
         </a>
@@ -45,19 +45,40 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { ref } from "vue";
 import { NIcon } from "naive-ui";
-import {HomeOutline, MapOutline } from "@vicons/ionicons5";
+import {Search,HomeOutline, MapOutline } from "@vicons/ionicons5";
 import { goToMyWalks, goToHome } from "../router/goToRouteWithParam";
 import router from "../router";
 
-let activeBtn = ref();
+export default {
+  components: {
+   Search,
+   HomeOutline,
+   MapOutline,
+   NIcon
+  },
+  setup() {
+    let activeBtn = ref();
 let goToMyWalksPage = ref(goToMyWalks);
 let gotoHomePage = ref(goToHome);
 let gotoWalks = () => {
   router.push({ path: "/wandelapp/walks" });
 };
+
+    return {
+      activeBtn,
+      gotoHomePage,
+      goToMyWalksPage,
+      gotoWalks
+      
+    };
+  },
+};
+
+
+
 </script>
 
 <style scoped>

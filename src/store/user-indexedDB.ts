@@ -3,12 +3,13 @@ import { db } from "./indexedDB";
 
 // using indexed DB for user authentication
 export default {
-  async addUser(randomID: String, uid: string, displayName: string) {
+  async addUser(randomID: string, uid: string, displayName: string) {
     let users = db.users.toArray();
     let data = await users.then((results) => {
       return results;
     });
     if (data.length !== 0) {
+      return
     } else {
       db.users.put({
         randomID,
