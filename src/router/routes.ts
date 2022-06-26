@@ -1,8 +1,4 @@
-import Login from "../views/Login.vue";
-import MainRoutes from "../components/MainRoutes.vue";
-import Home from "../views/Home.vue";
 import Route from "../views/route.vue";
-import Profile from "../views/profile.vue";
 import Walking from "../views/walking.vue";
 import finishedWalk from "../views/finishedWalk.vue";
 

@@ -34,7 +34,6 @@
 
 <script lang="ts">
 import { NButton } from "naive-ui";
-import { onMounted } from "vue";
 import { unixToTime, unixToDate } from "../controllers/createWalkControlle";
 import { goToWalk } from "../router/goToRouteWithParam";
 

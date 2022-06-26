@@ -1,10 +1,8 @@
 import { defineStore } from "pinia";
 
-// const walk = { name: 'Marlo' }
 
 export const useWalkingInfoStore = defineStore('walkingInfoStore', {
 
-     // De STATE is de centrale plek van de store 
      state: () => {
 
         return {
@@ -12,16 +10,9 @@ export const useWalkingInfoStore = defineStore('walkingInfoStore', {
         }
     },
 
-     //actions
     actions: {
 
-        fill() {
-             
-        }
-
-
-
     }
-     //getters
+   
 
 });

@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { NIcon } from "naive-ui";
-import { Search, HomeOutline, MapOutline } from "@vicons/ionicons5";
+import {HomeOutline, MapOutline } from "@vicons/ionicons5";
 import { goToMyWalks, goToHome } from "../router/goToRouteWithParam";
 import router from "../router";
 

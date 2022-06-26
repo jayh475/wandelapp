@@ -48,7 +48,7 @@ export default defineComponent({
       router.push({ path: profileRoute });
     };
 
-    const handleSelect = (key: String) => {
+    const handleSelect = (key: string) => {
       console.log(key);
       if (key === "logOut") {
         logOut();
