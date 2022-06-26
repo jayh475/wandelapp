@@ -1,0 +1,6 @@
+/* Show a rounded header on top of the page */
+.item-box-1 {
+    height: 110px;
+    background: #2a2e43;
+    border-bottom-left-radius: 85px;
+}

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    // https://bytenota.com/sovled-typescript-error-object-is-possibly-null-or-undefined/
+    "strictNullChecks": false
+  },
+  // https://github.com/antfu/vite-plugin-pwa/issues/38 (module for ReloadPrompt.vue in components)
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "node_modules/vite-plugin-pwa/client.d.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
