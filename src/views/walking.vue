@@ -49,8 +49,7 @@
 </template>
 
 <script lang="ts">
-import { computed, reactive } from "@vue/runtime-core";
-import { ref } from "vue";
+import { reactive } from "@vue/runtime-core";
 import { NButton } from "naive-ui";
 import DynamicHeader from "../components/DynamicHeader.vue";
 import { CompassOutline } from "@vicons/ionicons5";
@@ -59,7 +58,6 @@ import { useWalkingInfoStore } from "../store/WalkingInfoStore";
 import router from "../router";
 import { useRoute } from "vue-router";
 import { saveFinishedWalk } from "../store/user-firestore";
-import { goToCreatedWalk } from "../router/goToRouteWithParam";
 import { useUserStore } from "../store/auth-store";
 
 export default {
@@ -70,22 +68,20 @@ export default {
     gpsTracker,
   },
   setup() {
-    //TODO
     const route = useRoute();
 
-    var timer: any = reactive({ time: "00:00:00" });
-    var hr: any = 0;
-    var min: any = 0;
-    var sec: any = 0;
-    var stoptime: any = true;
-    var startTime: any = undefined;
-    var endTime: any = undefined;
-    var coordinates: any = [];
-    // const useWalking = useWalkingInfoStore();
+    let timer: any = reactive({ time: "00:00:00" });
+    let hr: any = 0;
+    let min: any = 0;
+    let sec: any = 0;
+    let stoptime: any = true;
+    let startTime: any = undefined;
+    let endTime: any = undefined;
+    let coordinates: any = [];
     const walkingInfoStore = useWalkingInfoStore();
 
     const startTimer = () => {
-      if (stoptime == true) {
+      if (stoptime) {
         startTime = Date();
         console.log(startTime);
         stoptime = false;
@@ -95,12 +91,11 @@ export default {
     };
 
     const stopTimer = () => {
-      if (stoptime == false) {
+      if (!stoptime) {
         endTime = Date();
         console.log(endTime);
         stoptime = true;
 
-        // TODO fix firestore
 
         let walkId = route.params.wandelingID;
 
@@ -159,7 +154,6 @@ export default {
           wandelingID: walkId,
         },
       });
-      //   goToCreatedWalk(walkId);
     };
 
     return {

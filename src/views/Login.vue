@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent} from "vue";
 import { NButton, NIcon } from "naive-ui";
 import { LogoFacebook, LogoChrome } from "@vicons/ionicons5";
 import { useUserStore } from "../store/auth-store";

@@ -16,14 +16,12 @@
 </template>
 
 <script lang="ts">
-// import { defineComponent } from "vue";
 import DynamicHeader from "../components/DynamicHeader.vue";
 import { useUserStore } from "../store/auth-store";
 import WalkedRouteCard from "../components/WalkedRouteCard.vue";
 import { onMounted, ref } from "vue";
 import { goToCreateWalk } from "../router/goToRouteWithParam";
 import { getWalks } from "../store/user-firestore";
-// https://antfu.me/posts/async-with-composition-api
 export default {
   components: {
     DynamicHeader,
@@ -32,7 +30,6 @@ export default {
   setup() {
     const userStore = useUserStore();
     const uid = userStore.getUID;
-    // const walkedRoutes = ref([]);
     let walkedRoutes = ref<any | null>(null);
 
     onMounted(async () => {

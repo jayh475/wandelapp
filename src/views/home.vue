@@ -7,19 +7,6 @@
     ></dynamic-header>
 
     <h1>Friends | Recent activities</h1>
-    <!-- <div class="horizontal-scroll-wrapper1"> -->
-    <!-- <ul style="display: grid; grid-template-columns: repeat(5, 1fr)">
-      <template v-for="friend in map" :key="docKey" :index="docKey">
-        <div style="height: 100px; width: 100px">
-          <div class="data-holder">
-            <h2>{{ friend.organisator }}'s walk</h2>
-            <h2>{{ friend.location }}, {{ friend.location }}</h2>
-          </div>
-        </div>
-      </template>
-    </ul> -->
-    <!-- </div> -->
-    <!-- <p1>{{ getMyWalk("XkMgVrDv7v8QUjNIRzSu").date }}</p1>  -->
 
     <h1>My Agenda</h1>
     <div class="horizontal-scroll-wrapper">
@@ -52,7 +39,6 @@
 </template>
 
 <script lang="ts">
-// import { defineComponent } from "vue";
 import { onMounted, ref } from "vue";
 import DynamicHeader from "../components/DynamicHeader.vue";
 import { useUserStore } from "../store/auth-store";
@@ -95,7 +81,6 @@ h1 {
   margin-left: 15%;
 }
 .horizontal-scroll-wrapper {
-  /* width: 400px; */
   height: 180px;
   overflow-y: hidden;
   overflow-x: auto;
@@ -104,7 +89,6 @@ h1 {
   margin-left: 10%;
 }
 .horizontal-scroll-wrapper1 {
-  /* width: 400px; */
   height: 180px;
   overflow-y: hidden;
   overflow-x: auto;
@@ -122,7 +106,6 @@ h1 {
   margin-right: 10px;
   border-radius: 15px;
 }
-/* https://www.w3schools.com/howto/howto_css_text_buttons.asp */
 .watch:hover {
   background: #eee;
 }
@@ -133,5 +116,4 @@ h1 {
   font-size: 15px;
   text-decoration: underline;
 }
-/* changes */
 </style>

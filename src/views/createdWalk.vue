@@ -52,7 +52,7 @@
           <p>
             {{ request.name }}
           </p>
-          <button @click="acceptParticipant(request.uid, myWalk.docId)">
+          <button @click="acceptParticipant(myWalk.docId)">
             <check-icon
               style="background-color: green; height: 40px"
             ></check-icon>
@@ -112,7 +112,6 @@ import { NButton, useMessage } from "naive-ui";
 import { unixToTime, unixToDate } from "../controllers/createWalkControlle";
 import { goToAProfile } from "../router/goToRouteWithParam";
 import router from "../router";
-import {checkIfListsNotEmpty} from "../controllers/participationController"
 
 
 
@@ -182,8 +181,6 @@ export default {
     };
 
     const checkAndthenParticipateInWalk = (
-      myUid: string,
-      myName: string,
       docId: any
     ) => {      
       let iAmAParticipant = (Array.from(unref(acceptedParticipants), x => x.uid === myUid))
