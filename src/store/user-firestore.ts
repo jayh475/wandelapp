@@ -40,6 +40,7 @@ export async function createUser(name: string, email: string, uid: string) {
     console.error("Error writing new message to Firebase Database", error);
   }
 }
+
 export async function createWalk(
   organisator: string,
   title: string,
@@ -89,9 +90,9 @@ export async function getWalks(uid: string) {
     const colRef = collection(db, "walks");
     const q = query(colRef, where("date", ">=", getUnixOfToday()));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      if (doc.data().uid === uid || joinedWalkIds.includes(doc.id)) {
-        map.set(doc.id, doc.data());
+    querySnapshot.forEach((docSnap) => {
+      if (docSnap.data().uid === uid || joinedWalkIds.includes(docSnap.id)) {
+        map.set(docSnap.id, docSnap.data());
       }
     });
     return map;
@@ -110,8 +111,8 @@ export async function getAProfileHistoryWalks(uid: any) {
       where("date", "<", getUnixOfToday())
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      list.push(doc.data());
+    querySnapshot.forEach((docSnap) => {
+      list.push(docSnap.data());
     });
 
     return list;
@@ -221,8 +222,8 @@ export async function getAcceptedParticipants(docId: any) {
   const q = query(colRef, where("accepted", "==", true));
   const querySnapshot = await getDocs(q);
 
-  querySnapshot.forEach((doc) => {
-    list.push(doc.data());
+  querySnapshot.forEach((docSnap) => {
+    list.push(docSnap.data());
   });
   return list;
 }
