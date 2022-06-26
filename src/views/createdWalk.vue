@@ -94,9 +94,7 @@
     "
     >See walked route</n-button
   >
-  <!-- <pre
-    >{{ JSON.stringify(myWalk, null, 2) }}
-</pre> -->
+  
 </template>
 
 <script lang="ts">
