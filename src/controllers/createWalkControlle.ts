@@ -1,8 +1,6 @@
 export function unixToTime(unixTimestamp: number) {
-  var s = new Date(unixTimestamp).toLocaleTimeString("en-US");
-  return s;
+  return new Date(unixTimestamp).toLocaleTimeString("en-US");
 }
 export function unixToDate(unixTime: number) {
-  const date = new Date(unixTime).toLocaleDateString("en-US");
-  return date;
+  return new Date(unixTime).toLocaleDateString("en-US");
 }

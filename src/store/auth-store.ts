@@ -26,9 +26,6 @@ export const useUserStore = defineStore("user", {
     getUsername: () => {
       let user = JSON.parse(localStorage.getItem("user"));
       return user.displayName;
-      // let userName = await userIndexedDB.getUserName();
-      // console.log(userName);
-      // return userName;
     },
     getUID: () => {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -38,10 +35,8 @@ export const useUserStore = defineStore("user", {
       let user = JSON.parse(localStorage.getItem("user"));
       return user.photoURL;
     },
-    async isLoggedIn(state) {
-      let isLoggedIn = await userIndexedDB.isLoggedIn();
-
-      return isLoggedIn;
+    async isLoggedIn() {
+      return await userIndexedDB.isLoggedIn();
     },
   },
   actions: {
@@ -55,9 +50,6 @@ export const useUserStore = defineStore("user", {
           value.email,
           value.password
         );
-        let user = userCredential.user;
-        // this.name =user.displayName
-
         return null;
       } catch (error) {
         let errorMessage = "Failed to do something exceptional";
@@ -77,9 +69,7 @@ export const useUserStore = defineStore("user", {
           value.email,
           value.password
         );
-        const user = userCredential.user;
         return { succes: true, errorMessage: "" };
-        // https://stackoverflow.com/questions/40141005/property-code-does-not-exist-on-type-error
       } catch (error: any) {
         switch (error.code) {
           case "auth/invalid-email":
@@ -116,15 +106,10 @@ export const useUserStore = defineStore("user", {
           userIndexedDB.addUser("475", user.uid, user.displayName);
           createUser(user.displayName, user.email, user.uid);
           router.push({ path: "/wandelapp/home" });
-
-          // this.isLoggedIn;
         })
         .catch((error: FirebaseError) => {
-          let auth = getAuth();
-          let user = auth.currentUser;
           const errorCode = error.code;
           const errorMessage = error.message;
-
           const credential = GoogleAuthProvider.credentialFromError(error);
           console.log(errorMessage, credential, errorCode);
         });

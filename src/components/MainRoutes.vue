@@ -1,10 +1,8 @@
 <template>
   <nav-bar></nav-bar>
-  <!-- <suspense> -->
   <n-message-provider>
     <router-view></router-view>
   </n-message-provider>
-  <!-- </suspense> -->
   <menu-bar />
 </template>
 

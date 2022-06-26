@@ -4,7 +4,7 @@ const userStore = useUserStore();
 
 async function username() {
   let object = await userStore.getUsername;
-  let name: String = object;
+  let name: string = object;
   return name;
 }
 
@@ -42,8 +42,3 @@ export function goToAProfile(name: string, uid: string) {
     params: { name: name, uid: uid },
   });
 }
-
-// export function goToMywalk(){
-//   router.push({ name: "createdWalk", params: { name: userStore.getUsername } });
-
-// }

@@ -22,6 +22,5 @@ export function unixToMonth(unixTime: number) {
 
 export function unixToDateNumber(unixTime: number) {
   const fullDate = new Date(unixTime);
-  const day = fullDate.getDate();
-  return day;
+  return fullDate.getDate();
 }
