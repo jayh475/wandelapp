@@ -61,7 +61,6 @@ import { ref } from "vue";
 import { goToMyWalks } from "../router/goToRouteWithParam";
 import { createWalk } from "../store/user-firestore";
 import { useUserStore } from "../store/auth-store";
-import { unixToTime, unixToDate } from "../controllers/createWalkControlle";
 import {
   FormInst,
   useMessage,

@@ -26,7 +26,6 @@ export default {
     WalkedRouteCard,
   },
   setup() {
-    const userStore = useUserStore();
     const allWalks = ref<any | null>(null);
 
     onMounted(async () => {

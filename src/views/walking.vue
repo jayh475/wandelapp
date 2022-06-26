@@ -111,7 +111,7 @@ export default {
     };
 
     const timerCycle = () => {
-      if (stoptime == false) {
+      if (!stoptime) {
         sec = parseInt(sec);
         min = parseInt(min);
         hr = parseInt(hr);
