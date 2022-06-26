@@ -6,7 +6,7 @@
     <div class="card-information">
       <div class="card-information_text">
         <p>
-          <b>{{ route.title }}</b>
+          <strong>{{ route.title }}</strong>
         </p>
         <div class="info">
           <p><strong>Organisator:</strong> {{ route.organisator }}</p>
