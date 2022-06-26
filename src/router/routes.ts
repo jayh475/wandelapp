@@ -43,7 +43,6 @@ const routes = [
         name: "profile",
         component: () => import("../views/profile.vue"),
       },
-      // id must be generated
       {
         path: "/wandelapp/:name/wandelingen/:wandelingID/",
         name: "createdWalk",

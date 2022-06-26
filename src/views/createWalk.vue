@@ -148,22 +148,10 @@ export default {
         formRef.value?.validate((errors) => {
           if (!errors) {
             let value: any = formValue.value;
-
-            unixToDate(value.date);
-            console.log("date ", value.date);
-
-            unixToTime(value.time);
-            console.log("TIME ", value.time);
-
             createWalk(
               username,
-              value.title,
-              value.location,
-              value.distance,
-              value.time,
-              value.date,
-              value.description,
-              uid
+              uid,
+              value
             );
             message.success("valid");
             goToMyWalks();

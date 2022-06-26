@@ -43,25 +43,20 @@ export async function createUser(name: string, email: string, uid: string) {
 
 export async function createWalk(
   organisator: string,
-  title: string,
-  location: string,
-  distance: number,
-  time: Timestamp,
-  date: Timestamp,
-  description: string,
-  uid: string
+  uid: string,
+   value:any
 ) {
   try {
     const colRef = collection(db, "walks");
     await setDoc(doc(colRef), {
       organisator: organisator,
       uid: uid,
-      title: title,
-      location: location,
-      distance: distance,
-      time: time,
-      date: date,
-      description,
+      title: value.title,
+      location: value.location,
+      distance: value.distance,
+      time: value.time,
+      date: value.date,
+      description:value.description,
       visible: true,
       created: getUnixOfToday(),
     });
