@@ -16,7 +16,6 @@
 <script lang="ts">
 import DynamicHeader from "../components/DynamicHeader.vue";
 import { onMounted, ref } from "vue";
-import { useUserStore } from "../store/auth-store";
 import WalkedRouteCard from "../components/WalkedRouteCard.vue";
 import { getAllUpComingWalks } from "../store/user-firestore";
 
