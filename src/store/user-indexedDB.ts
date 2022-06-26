@@ -20,7 +20,6 @@ export default {
   },
 
   async LogOut() {
-    let users: any = db.users.toArray();
     await db.users.where("randomID").equals("475").delete();
   },
 
@@ -30,25 +29,15 @@ export default {
     console.log();
     return user.name;
   },
-
   async isLoggedIn() {
     let users: any = db.users;
-    let loggedIn = await Dexie.exists("deWandelendeTakken").then(function (
-      exists
-    ) {
-      let data = users.get("475");
+    let loggedIn = await Dexie.exists("deWandelendeTakken").
+    then(function(exists) {
       if (exists) {
-        if (typeof data === "undefined") {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        console.log(!exists);
-        return false;
+        let data = users.get("475");
+        return typeof data !== "undefined";
       }
-    });
-
+    })
     return loggedIn;
   },
 };

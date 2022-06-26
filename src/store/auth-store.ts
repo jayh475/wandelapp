@@ -2,9 +2,7 @@
 import { defineStore } from "pinia";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
