@@ -1,7 +1,6 @@
 <template>
   <div :style="'background-color:' + backgroundColor" class="dynamicBox">
     <p :style="'color:' + color + ';font-size:29px'">{{ title }}</p>
-    <!-- <h1>Route</h1> -->
   </div>
 </template>
 
