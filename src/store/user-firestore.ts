@@ -127,9 +127,9 @@ export async function getMyUpcomingDates(uid: string) {
     const q = query(colRef, where("date", ">", getUnixOfToday()));
     let joinedWalkIds = await joinedWalkArray(uid);
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      if (doc.data().uid === uid || joinedWalkIds.includes(doc.id)) {
-        map.set(doc.id, doc.data().date);
+    querySnapshot.forEach((docSnap) => {
+      if (docSnap.data().uid === uid || joinedWalkIds.includes(docSnap.id)) {
+        map.set(docSnap.id, docSnap.data().date);
       }
     });
     return map;
@@ -145,8 +145,8 @@ export async function getAllUpComingWalks() {
     const colref = collection(db, "walks");
     const q = query(colref, where("date", ">=", getUnixOfToday()));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      map.set(doc.id, doc.data());
+    querySnapshot.forEach((docSnap) => {
+      map.set(docSnap.id, docSnap.data());
     });
     return map;
   } catch (error) {
@@ -210,8 +210,8 @@ export async function getPendingParticipants(docId: any) {
   const q = query(colRef, where("accepted", "==", false));
   const querySnapshot = await getDocs(q);
 
-  querySnapshot.forEach((doc) => {
-    list.push(doc.data());
+  querySnapshot.forEach((docSnap) => {
+    list.push(docSnap.data());
   });
   return list;
 }
