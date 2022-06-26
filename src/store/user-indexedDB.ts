@@ -31,13 +31,12 @@ export default {
   },
   async isLoggedIn() {
     let users: any = db.users;
-    let loggedIn = await Dexie.exists("deWandelendeTakken").
+    return await Dexie.exists("deWandelendeTakken").
     then(function(exists) {
       if (exists) {
         let data = users.get("475");
         return typeof data !== "undefined";
       }
     })
-    return loggedIn;
   },
 };
