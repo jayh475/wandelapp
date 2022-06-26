@@ -7,7 +7,6 @@
       ></dynamic-header>
     </div>
 
-    <!-- someone else profile -->
     <div v-if="uid !== getUidFromList" class="item-box item-box-2">
       <div class="item-box-2_text">
         <p>{{ profile.name }}</p>
@@ -20,7 +19,6 @@
       </div>
     </div>
 
-    <!-- my own profile -->
     <div v-if="uid === getUidFromList" class="item-box item-box-2">
       <div class="item-box-2_text">
         <p>{{ userStore.name }}</p>
@@ -34,8 +32,8 @@
 
     <div class="item-box item-box-3">
       <div class="item-box-3_text">
-        <p><b>Telephone:</b> {{ userStore.phoneNumber }}</p>
-        <p><b>E-mail:</b> {{ userStore.email }}</p>
+        <p><strong>Telephone:</strong> {{ userStore.phoneNumber }}</p>
+        <p><strong>E-mail:</strong> {{ userStore.email }}</p>
       </div>
 
       <div class="item-box-3_button">
@@ -60,8 +58,6 @@
         <div v-for="route in walkedRoutes" :key="route.routeName">
           <walked-route-card :route="route"></walked-route-card>
         </div>
-        <!-- <walked-route-card></walked-route-card>
-          <walked-route-card></walked-route-card> -->
       </div>
     </div>
   </div>
@@ -93,7 +89,6 @@ export default {
     const route = useRoute();
     const walkedRoutes = ref([]);
     const profile = ref({});
-    // const walk = await getMyWalk(route.params.wandelingID);
 
     onMounted(async () => {
       console.log(route.params.uid);

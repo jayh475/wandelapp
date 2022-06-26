@@ -26,7 +26,6 @@ export function goToCreatedWalk(id: any) {
     name: "createdWalk",
     params: { name: userStore.getUsername, wandelingID: id },
   });
-  console;
 }
 
 export function goToWalk(id: any, name: string) {

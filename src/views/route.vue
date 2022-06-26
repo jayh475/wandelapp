@@ -20,9 +20,9 @@
     </div>
     <div class="item-box item-box-4">
       <p>
-        <b>{{ name }}</b> walked <b>{{ distance }}</b> on <b>{{ date }}</b>
+        <strong>{{ name }}</strong> walked <strong>{{ distance }}</strong> on <strong>{{ date }}</strong>
       </p>
-      <p><b>Organisator:</b> {{ organisator }}</p>
+      <p><strong>Organisator:</strong> {{ organisator }}</p>
     </div>
   </div>
 </template>
