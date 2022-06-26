@@ -9,10 +9,10 @@
           <b>{{ route.title }}</b>
         </p>
         <div class="info">
-          <p><b>Organisator:</b> {{ route.organisator }}</p>
-          <p><b>Location:</b> {{ route.location }}</p>
+          <p><strong>Organisator:</strong> {{ route.organisator }}</p>
+          <p><strong>Location:</strong> {{ route.location }}</p>
           <p>
-            <b>Date:</b> {{ unixToDate(route.date) }},
+            <strong>Date:</strong> {{ unixToDate(route.date) }},
             {{ unixToTime(route.time) }}
           </p>
         </div>

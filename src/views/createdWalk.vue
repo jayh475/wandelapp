@@ -12,19 +12,19 @@
   <div class="item-box-1">
     <div>
       <p>
-        <b>Organisator: </b
-        ><button
+        <strong>Organisator: </strong>
+        <button
           @click="goToAProfile(myWalk.organisator, myWalk.uid)"
           class="profile-organisator"
         >
           {{ myWalk.organisator }}
         </button>
       </p>
-      <p><b>Location: </b>{{ myWalk.location }}</p>
-      <p><b>Date: </b>{{ myWalk.date }}</p>
-      <p><b>Start: </b> {{ myWalk.time }}</p>
-      <p><b>Distance in km: </b>{{ myWalk.distance }}</p>
-      <p><b>created on: </b>{{ myWalk.created }}</p>
+      <p><strong>Location: </strong>{{ myWalk.location }}</p>
+      <p><strong>Date: </strong>{{ myWalk.date }}</p>
+      <p><strong>Start: </strong> {{ myWalk.time }}</p>
+      <p><strong>Distance in km: </strong>{{ myWalk.distance }}</p>
+      <p><strong>created on: </strong>{{ myWalk.created }}</p>
     </div>
 
     <div v-if="myUid === myWalk.uid" class="button-holder">
@@ -119,10 +119,6 @@ import { NButton, useMessage } from "naive-ui";
 import { unixToTime, unixToDate } from "../controllers/createWalkControlle";
 import { goToAProfile } from "../router/goToRouteWithParam";
 import router from "../router";
-import { request } from "http";
-import { values } from "lodash";
-
-// read parameter id (it is reactive)
 
 export default {
   components: {

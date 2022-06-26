@@ -29,9 +29,9 @@
     </div>
     <div class="item-box item-box-4">
       <div class="item-box-4_text">
-        <p><b> Location: </b> {{ location }}</p>
-        <p><b> Started: </b> {{ startTime }}</p>
-        <p><b> Ended: </b> {{ endTime }}</p>
+        <p><strong> Location: </strong> {{ location }}</p>
+        <p><strong> Started: </strong> {{ startTime }}</p>
+        <p><strong> Ended: </strong> {{ endTime }}</p>
       </div>
       <div class="item-box-4_buttons">
         <n-button color="#2a2e43" type="primary" size="large" id="download">
