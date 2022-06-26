@@ -35,60 +35,11 @@ export const useUserStore = defineStore("user", {
       let user = JSON.parse(localStorage.getItem("user"));
       return user.photoURL;
     },
-    async isLoggedIn() {
-      return await userIndexedDB.isLoggedIn();
+    isLoggedIn() {
+      return userIndexedDB.isLoggedIn();
     },
   },
   actions: {
-    // https://stackoverflow.com/questions/60151181/object-is-of-type-unknown-typescript-generics
-    async registerWithEmail(value: { email: string; password: string }) {
-      const auth: any = getAuth();
-
-      try {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
-          value.email,
-          value.password
-        );
-        return null;
-      } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        console.log(errorMessage);
-      }
-    },
-
-    async login(value: { email: string; password: string }) {
-      const auth: any = getAuth();
-
-      try {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          value.email,
-          value.password
-        );
-        return { succes: true, errorMessage: "" };
-      } catch (error: any) {
-        switch (error.code) {
-          case "auth/invalid-email":
-            return { succes: false, error: "Invalid email" };
-          case "auth/user-not-found":
-            return {
-              succes: false,
-              error: "No account with that email was found",
-            };
-          case "auth/wrong-password":
-            return { succes: false, error: "Incorrect password" };
-          default:
-            return {
-              succes: false,
-              error: "Email or password was incorrect",
-            };
-        }
-      }
-    },
     async registerOrLoginWithGoogle() {
       const provider: GoogleAuthProvider = new GoogleAuthProvider();
       const auth: any = getAuth();

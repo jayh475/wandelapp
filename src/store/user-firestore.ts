@@ -1,7 +1,6 @@
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
   updateDoc,
   doc,
@@ -11,10 +10,7 @@ import {
   where,
   getDoc,
   query,
-  serverTimestamp,
   arrayUnion,
-  QuerySnapshot,
-  FieldPath,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 // Initialize Firebase
@@ -56,8 +52,6 @@ export async function createWalk(
   uid: string
 ) {
   try {
-    // const docRef = doc(db, "users", uid);
-    // const colRef = collection(docRef, "walks");
     const colRef = collection(db, "walks");
     await setDoc(doc(colRef), {
       organisator: organisator,
@@ -75,7 +69,6 @@ export async function createWalk(
     console.error("Error writing new message to Firebase Database", error);
   }
 }
-
 async function joinedWalkArray(uid: string) {
   const docRef3 = doc(db, "users", uid);
   const colRef3 = collection(docRef3, "joinedWalks");

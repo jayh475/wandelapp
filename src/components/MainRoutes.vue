@@ -18,5 +18,3 @@ export default {
   components: { NavBar, MenuBar, NMessageProvider },
 };
 </script>
-
-<style></style>
